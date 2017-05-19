@@ -1,0 +1,20 @@
+﻿<div class="feedback-acknowledgment">
+    <div class="alert alert-success" role="alert">
+        <h4 style="margin: 0;">The feedback has been submitted successfully. Thank you.</h4>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <span>If you want to submit another <strong>Positive</strong> feedback, please click</span>
+        @Html.ActionLink("here", "Positive", "Home").
+    </div>
+
+    <div style="margin-bottom: 20px;">
+        <span>If you want to submit another <strong>Negative</strong> feedback, please click</span>
+        @Html.ActionLink("here", "Negative", "Home").
+    </div>
+
+    <div style="margin-bottom: 10px;">
+        <span>To quit the application, please click</span>
+        @Html.ActionLink("here", "Exit", "Home").
+    </div>
+</div>

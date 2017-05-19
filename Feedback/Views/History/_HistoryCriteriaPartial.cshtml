@@ -1,0 +1,89 @@
+﻿@model Feedback.Models.HistoryModel
+@{ 
+    SelectListItem[] statusItems = {
+        new SelectListItem() { Text = "All" },
+        new SelectListItem() { Text = "Submited" },
+        new SelectListItem() { Text = "Confirmed" },
+        new SelectListItem() { Text = "Disputed" },
+        new SelectListItem() { Text = "Removed" }
+    };
+}
+
+<div class="history-criteria" style="margin-top: 40px;">
+    @Html.HiddenFor(x => x.ClientID)
+    <h5>Step 1: Select the feedback status</h5>
+    <div class="form-inline">
+        <div class="form-group">
+            <label for="FeedbackStatus">Status:</label>
+            @Html.DropDownListFor(x => x.FeedbackStatus, statusItems, new { @class = "form-control", @style = "width: 120px;" })
+        </div>
+    </div>
+
+    <h5 style="margin-top: 40px;">Step 2: Select the date range</h5>
+    <div class="form-inline">
+        <div class="form-group">
+            <label for="FeedbackStatus">From:</label>
+            <div class="input-group" style="width: 150px; margin-right: 10px;">
+                <input type="text" name="StartDate" id="StartDate" class="form-control bs-datepicker issue-start-date" value="@Model.GetStartDate().Date.ToString("MM/dd/yyyy")" />
+                <span class="input-group-addon calendar-button"><img src="~/Content/images/calendar.gif" /></span>
+            </div>
+            <label for="FeedbackStatus">To:</label>
+            <div class="input-group" style="width: 150px;">
+                <input type="text" name="EndDate" id="EndDate" class="form-control bs-datepicker issue-end-date" value="@Model.GetEndDate().AddDays(-1).Date.ToString("MM/dd/yyyy")" />
+                <span class="input-group-addon calendar-button"><img src="~/Content/images/calendar.gif" /></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" style="margin-top: 40px;">
+        <button type="submit" name="RetrieveData" value="true" class="btn btn-default" style="margin-right: 10px;">Retrieve Data</button>
+        <em class="text-muted">&larr; Click this button after you set the Start and End date.</em>
+    </div>
+
+    <hr />
+
+    <h5><strong>OR</strong> skip Step 2 and click any of the pre-defined length of time</h5>
+    <div class="radio-inline">
+        <label>
+            <input type="radio" value="7dy" name="DateRangePreset" class="date-range-preset" checked="@(Model.DateRangePreset == "7dy")" />
+            7dy
+        </label>
+    </div>
+    <div class="radio-inline">
+        <label>
+            <input type="radio" value="1mo" name="DateRangePreset" class="date-range-preset" checked="@(Model.DateRangePreset == "1mo")" />
+            1mo
+        </label>
+    </div>
+    <div class="radio-inline">
+        <label>
+            <input type="radio" value="3mo" name="DateRangePreset" class="date-range-preset" checked="@(Model.DateRangePreset == "3mo")" />
+            3mo
+        </label>
+    </div>
+    <div class="radio-inline">
+        <label>
+            <input type="radio" value="6mo" name="DateRangePreset" class="date-range-preset" checked="@(Model.DateRangePreset == "6mo")" />
+            6mo
+        </label>
+    </div>
+    <div class="radio-inline">
+        <label>
+            <input type="radio" value="9mo" name="DateRangePreset" class="date-range-preset" checked="@(Model.DateRangePreset == "9mo")" />
+            9mo
+        </label>
+    </div>
+    <div class="radio-inline">
+        <label>
+            <input type="radio" value="1yr" name="DateRangePreset" class="date-range-preset" checked="@(Model.DateRangePreset == "1yr")" />
+            1yr
+        </label>
+    </div>
+    <div class="radio-inline" style="margin-right: 10px;">
+        <label>
+            <input type="radio" value="2yr" name="DateRangePreset" class="date-range-preset" checked="@(Model.DateRangePreset == "2yr")" />
+            2yr
+        </label>
+    </div>
+    <em class="text-muted">&larr; For a quick report, click any predefined length of time.</em>
+</div>

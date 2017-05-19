@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Positive Feedback";
+    bool showAcknowledgment = ViewBag.ShowAcknowledgment;
+}
+
+@if (showAcknowledgment)
+{
+    <div class="acknowledgment">
+        @Html.Partial("_FeedbackAcknowledgmentPartial")
+    </div>
+}
+else
+{
+    using (Html.BeginForm("Positive", "Home", FormMethod.Post))
+    {
+        @Html.Partial("_FeedbackCriteriaPartial")
+
+        @Html.Partial("_FeedbackCommentPartial")
+
+        <button type="submit" class="btn btn-primary btn-lg">Submit POSITIVE Feedback</button>
+    }
+}

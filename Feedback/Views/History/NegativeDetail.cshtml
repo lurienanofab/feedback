@@ -1,0 +1,21 @@
+﻿@model Feedback.Models.NegativeIssueItem
+@{
+    ViewBag.Title = "Detail";
+}
+
+<div class="row">
+    <div class="col-md-2">
+        @Html.Partial("_HistorySubmenuPartial")
+    </div>
+    <div class="col-md-10">
+        <div style="padding-left: 20px; border-left: 1px solid #ccc; min-height: 400px;">
+            <div class="form-inline">
+                <div class="form-group">
+                    <label>Violator's Name:</label>
+                    <p class="form-control-static">@Model.DisplayName</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

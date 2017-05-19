@@ -1,0 +1,19 @@
+﻿@{ 
+    int submenu = ViewBag.Submenu;
+
+    Func<int, string> getSubmenuClass = x =>
+    {
+        if (x == submenu)
+            return "active";
+        else
+            return string.Empty;
+    };
+}
+
+<div class="history-submenu">
+    <ul class="nav nav-pills nav-stacked">
+        <li role="presentation" class="@getSubmenuClass(1)">@Html.ActionLink("Search Feedback", "Index", "History")</li>
+        <li role="presentation" class="@getSubmenuClass(2)">@Html.ActionLink("Aggregate Report", "AggregateReport", "History")</li>
+        <li role="presentation" class="@getSubmenuClass(3)">@Html.ActionLink("Dispute", "Dispute", "History")</li>
+    </ul>
+</div>

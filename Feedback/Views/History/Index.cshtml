@@ -1,0 +1,61 @@
+﻿@using Feedback.Models;
+
+@model HistoryModel
+@{
+    ViewBag.Title = "History";
+    string displayName = ViewBag.DisplayName;
+    IEnumerable<ReportItem> items = ReportUtility.GetNegativeReport(Model.ClientID, Model.GetStartDate(), Model.GetEndDate(), Model.FeedbackStatus);
+}
+
+<div class="row">
+    <div class="col-md-2">
+        @Html.Partial("_HistorySubmenuPartial")
+    </div>
+    <div class="col-md-10">
+        <div style="padding-left: 20px; border-left: 1px solid #ccc; min-height: 400px;">
+            @using (Html.BeginForm("Index", "History", FormMethod.Post))
+            {
+                <h4>Individual Report - @displayName</h4>
+
+                <p class="text-muted">Set the date and search your own history feedbacks reported by others.</p>
+
+                @Html.Partial("_HistoryCriteriaPartial", Model);
+            }
+
+            <div style="margin-top: 40px;">
+                <h4>Negative Feedback</h4>
+                <div class="negative-report">
+                    @if (items.Count() > 0)
+                    {
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Comment</th>
+                                    <th style="text-align: center;">Detail</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in items)
+                                {
+                                    <tr>
+                                        <td>@item.IssueTime.ToString("MM/dd/yyyy h:mm:ss tt")</td>
+                                        <td><span class="clip" data-length="60" data-suffix="..." style="display: none;">@item.Comment</span></td>
+                                        <td style="text-align: center;"><a href="@Url.Action("NegativeDetail", "History", new { issueId = item.IssueID })"><img src="//ssel-apps.eecs.umich.edu/static/images/view.png" /></a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                </div>
+
+                <h4 style="margin-top: 40px;">Positive Feedback</h4>
+                @if (Model != null)
+                {
+                    <div>start: @Model.GetStartDate()</div>
+                    <div>end: @Model.GetEndDate()</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

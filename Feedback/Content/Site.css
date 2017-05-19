@@ -1,0 +1,21 @@
+﻿.history-submenu .nav-pills > li.active > a,
+.history-submenu .nav-pills > li.active > a:focus,
+.history-submenu .nav-pills > li.active > a:hover {
+    color: #23527c;
+    background-color: #eee;
+}
+
+.time-hour,
+.time-minute,
+.time-ampm {
+    display: inline-block;
+    width: 70px;
+}
+
+@media (max-width: 767px) {
+    .time-hour,
+    .time-minute,
+    .time-ampm {
+        margin-top: 10px;
+    }
+}

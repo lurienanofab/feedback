@@ -1,0 +1,30 @@
+﻿@using Feedback.Models;
+
+@{
+    var sidebar = FeedbackUtility.GetSidebar();
+}
+
+<div class="feedback-comment">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-default" style="height: 250px; overflow: hidden;">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Detail Comment <em style="font-size: smaller;" class="text-muted">(e.g. Description of user behavior, maximum 1500 characters.)</em></h3>
+                </div>
+                <div class="panel-body">
+                    <textarea name="Comment" id="Comment" class="form-control" maxlength="1500" style="height: 170px;"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="well" style="height: 250px; overflow: hidden;">
+                @sidebar.Message
+                <div style="margin-top: 10px;">
+                    <strong>LNF Faculty Director:</strong>
+                    <div style="padding-left: 10px;">@sidebar.DirectorName</div>
+                    <div style="padding-left: 10px;"><a href="mailto:@sidebar.DirectorEmail">@sidebar.DirectorEmail</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

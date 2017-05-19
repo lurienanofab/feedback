@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "AggregateReport";
+    string displayName = ViewBag.DisplayName;
+}
+
+<div class="row">
+    <div class="col-md-2">
+        @Html.Partial("_HistorySubmenuPartial")
+    </div>
+    <div class="col-md-10">
+        <div style="padding-left: 20px; border-left: 1px solid #ccc; min-height: 400px;">
+            @using (Html.BeginForm("Index", "History", FormMethod.Get))
+            {
+                <h4>Aggregate Report - @displayName</h4>
+
+                <p class="text-muted">This shows your history of feedback reported by other users in the lab.</p>
+
+                @Html.Partial("_HistoryCriteriaPartial");
+            }
+        </div>
+    </div>
+</div>
+
